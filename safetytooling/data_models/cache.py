@@ -1,12 +1,13 @@
 import pydantic
+from pydantic import SkipValidation
 
 from .inference import LLMParams, LLMResponse, TaggedModeration
 from .messages import Prompt
 
 
 class LLMCache(pydantic.BaseModel):
-    params: LLMParams
-    prompt: Prompt
+    params: SkipValidation[LLMParams]
+    prompt: SkipValidation[Prompt]
     responses: list[LLMResponse] | None = None
 
 

@@ -4,6 +4,7 @@ from typing import Any, Literal, Union
 
 import openai
 import pydantic
+from pydantic import SkipValidation
 
 from safetytooling.data_models.utils import GeminiBlockReason, GeminiStopReason, SafetyRatings
 
