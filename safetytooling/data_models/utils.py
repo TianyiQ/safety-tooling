@@ -16,10 +16,13 @@ LOGGER = logging.getLogger(__name__)
 GEMINI_MODELS = {
     "gemini-1.5-flash-001",
     "gemini-1.5-pro-001",
+    "gemini-2.5-flash-preview-04-17",
+    "gemini-2.5-pro-preview-05-06",
+    "gemini-2.0-flash",
 }
 
-GEMINI_RPM = {"gemini-1.5-flash-001": 1000, "gemini-1.5-pro-001": 360}
-GEMINI_TPM = 2000000
+GEMINI_RPM = {"gemini-1.5-flash-001": 1000, "gemini-1.5-pro-001": 360, "gemini-2.5-flash-preview-04-17": 1000, "gemini-2.5-pro-preview-05-06": 150, "gemini-2.0-flash": 2000}
+GEMINI_TPM = 1000000
 
 DELETE_FILE_QUOTA = 500
 
