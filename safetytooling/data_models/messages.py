@@ -99,9 +99,9 @@ class Prompt(HashableBaseModel):
         out = ""
         for msg in self.messages:
             if msg.role != MessageRole.none:
-                out += f"\n\n{msg.role.value}: {msg.content}"
+                out += f"\n\n{msg.role.value}: {msg.content[:100]}"
             else:
-                out += f"\n{msg.content}"
+                out += f"\n{msg.content[:100]}"
         return out.strip()
 
     def __add__(self, other: Self) -> Self:

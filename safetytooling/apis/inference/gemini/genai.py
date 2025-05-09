@@ -177,11 +177,11 @@ class GeminiModel(InferenceAPIModel):
                                """
                 )
                 block_reason = response_data.prompt_feedback.block_reason
-                LOGGER.info(f"PROMPT CAUSING BLOCKING: \n {prompt[:100]}")
+                LOGGER.info(f"PROMPT CAUSING BLOCKING: \n {prompt}")
                 LOGGER.info(
                     f"Specific block reason = {block_reason}, which will be recorded as GeminiStopReason.BLOCKED"
                 )
-                LOGGER.info(f"No candidates return on prompt {prompt[:100]}")
+                LOGGER.info(f"No candidates return on prompt {prompt}")
                 LOGGER.info(f"BLOCKED RESPONSE DATA:\n  {response_data}")
 
                 response = LLMResponse(
@@ -218,7 +218,7 @@ class GeminiModel(InferenceAPIModel):
                                """
                     )
                     LOGGER.info("CANDIDATE RESPONSE IS NOT LIST")
-                    LOGGER.info("PROMPT CAUSING NO RESPONSE: \n {prompt[:100]}")
+                    LOGGER.info("PROMPT CAUSING NO RESPONSE: \n {prompt}")
                     LOGGER.info(f"RESPONSE: {response_data}")
 
                     # Convert candidates into a list so that we can access its contents
@@ -310,7 +310,7 @@ class GeminiModel(InferenceAPIModel):
             raise RecitationRateFailureError("Recitation rate failure is too high!")
         if responses is None:
             self.total_recitation_failures += 1
-            LOGGER.error(f"Failed to get a response for {prompt[:100]} from any API after {max_attempts} attempts.")
+            LOGGER.error(f"Failed to get a response for {prompt} from any API after {max_attempts} attempts.")
             LOGGER.info(f"Current recitation retry rate: {self.recitation_retry_rate* 100:.2f}")
             LOGGER.info(f"Current recitation failure rate: {self.recitation_failure_rate* 100:.2f}")
             return [
