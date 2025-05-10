@@ -260,7 +260,7 @@ class GeminiVertexAIModel(InferenceAPIModel):
                 break
 
         if responses is None:
-            LOGGER.error(f"Failed to get a response for {prompt} from any API after {max_attempts} attempts.")
+            LOGGER.error(f"Failed to get a response for {prompt} from any API after {max_attempts} attempts. See prompt file: {os.environ.get('RECENT_PROMPT_FILE', None)}.")
             return [{}]
         else:
             # Add number of attempts to response object for recitation retries

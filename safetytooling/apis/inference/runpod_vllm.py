@@ -2,6 +2,7 @@ import asyncio
 import collections
 import logging
 import time
+import os
 from pathlib import Path
 from traceback import format_exc
 
@@ -140,7 +141,7 @@ class VLLMChatModel(InferenceAPIModel):
             else:
                 break
         else:
-            LOGGER.error(f"Failed to get a response from the API after {max_attempts} attempts.")
+            LOGGER.error(f"Failed to get a response from the API after {max_attempts} attempts. See prompt file: {os.environ.get('RECENT_PROMPT_FILE', None)}.")
             raise RuntimeError(f"Failed to get a response from the API after {max_attempts} attempts.")
 
         duration = time.time() - start

@@ -1,6 +1,7 @@
 import asyncio
 import logging
 import time
+import os
 from pathlib import Path
 from traceback import format_exc
 from typing import Optional
@@ -172,7 +173,7 @@ class OpenAIModel(InferenceAPIModel):
                 break
 
         if responses is None:
-            raise RuntimeError(f"Failed to get a response from the API after {max_attempts} attempts.")
+            raise RuntimeError(f"Failed to get a response from the API after {max_attempts} attempts. See prompt file: {os.environ.get('RECENT_PROMPT_FILE', None)}.")
 
         if print_prompt_and_response:
             prompt.pretty_print(responses)

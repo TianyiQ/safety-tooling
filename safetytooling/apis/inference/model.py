@@ -1,3 +1,4 @@
+import os
 import json
 import logging
 from datetime import datetime
@@ -25,6 +26,7 @@ class InferenceAPIModel(Protocol):
         if prompt_history_dir is None:
             return None
         filename = f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]}.txt"
+        os.environ["RECENT_PROMPT_FILE"] = filename
         prompt_file = prompt_history_dir / model / filename
         prompt_file.parent.mkdir(parents=True, exist_ok=True)
         with open(prompt_file, "w") as f:

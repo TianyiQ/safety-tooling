@@ -159,7 +159,7 @@ class GeminiModel(InferenceAPIModel):
         response_data = async_response._result
 
         if response_data is None:
-            raise RuntimeError(f"Failed to get a response from the API after {max_attempts} attempts.")
+            raise RuntimeError(f"Failed to get a response from the API after {max_attempts} attempts. See prompt file: {os.environ.get('RECENT_PROMPT_FILE', None)}.")
 
         duration = time.time() - start
         LOGGER.debug(f"Completed call to {model_id} in {duration}s")
@@ -310,7 +310,7 @@ class GeminiModel(InferenceAPIModel):
             raise RecitationRateFailureError("Recitation rate failure is too high!")
         if responses is None:
             self.total_recitation_failures += 1
-            LOGGER.error(f"Failed to get a response for {prompt} from any API after {max_attempts} attempts.")
+            LOGGER.error(f"Failed to get a response for {prompt} from any API after {max_attempts} attempts. See prompt file: {os.environ.get('RECENT_PROMPT_FILE', None)}. See prompt file: {os.environ.get('RECENT_PROMPT_FILE', None)}.")
             LOGGER.info(f"Current recitation retry rate: {self.recitation_retry_rate* 100:.2f}")
             LOGGER.info(f"Current recitation failure rate: {self.recitation_failure_rate* 100:.2f}")
             return [
